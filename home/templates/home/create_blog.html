@@ -1,0 +1,33 @@
+{% extends 'home/index.html' %}
+
+{% block content %}
+
+
+<div class="blog-container bg-light">
+    <h1 class="title">Create a Blog</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title" class="label">Title:</label>
+            <input type="text" id="title" name="title" value="{{ request.POST.title }}" required>
+        </div>
+        <div class="form-group">
+            <label for="content" class="label">Content:</label>
+            <textarea id="content" name="content" class="custom-textarea" required>{{ request.POST.content }}</textarea>
+        </div>
+        {% if error_message %}
+            <div class="form-group">
+                <div class="alert alert-danger bi bi-exclamation-lg" role="alert">
+                    {{ error_message }}
+                </div>
+            </div>
+        {% endif %}
+        <div class="form-group">
+            <button type="submit" class="custom-button">Publish</button>
+        </div>
+    </form>
+</div>
+
+
+
+{% endblock %}

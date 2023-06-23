@@ -1,0 +1,47 @@
+{% extends 'home/index.html' %}
+
+{% block content %}
+
+
+<div class="mx-auto bg-warning text-white p-3 my-3 rounded-lg rounded-3 rounded-1 border border-dark w-50">
+    <h1 class="text-center display-5">My Blogs</h1>
+</div>
+
+
+
+  {% for blog in blogs %}
+  <div class="mx-auto w-50 bg-light text-dark p-3 my-3 rounded-lg border border-primary rounded-3">
+      <h1>{{ blog.title }}</h1>
+      <p>
+          {% if blog.content|wordcount > 50 %}
+              {{ blog.content|truncatewords:50 }}...
+              <a href="{% url 'home:content' blog.id %}">Read More</a>
+          {% else %}
+              {{ blog.content }}
+          {% endif %}
+      </p>
+      <div class="row">
+          <div class="col text-end">{{ blog.date }}</div>
+      </div>
+      <br>
+      <div class="row">
+          <div class="col">
+              <a class="btn custom-edit" href="{% url 'home:edit_blog' blog.id %}">Edit</a>
+          </div>
+          <div class="col">
+              <form action="{% url 'home:delete_blog' %}" method="POST">
+                  {% csrf_token %}
+                  <input type="hidden" name="blog_id" value="{{ blog.id }}">
+                  <button class="btn custom-delete" type="submit">Delete</button>
+              </form>
+          </div>
+      </div>
+  </div>
+{% empty %}
+<div class="my-alert">
+    <h3 class="alert alert-danger text-center mt-5 border border-danger border-1 rounded-3  bi bi-emoji-dizzy w-50"> Oops! It looks like you haven't written any blogs yet <i class="bi bi-emoji-dizzy"></i></h3>
+</div>
+{% endfor %}
+
+
+{% endblock %}

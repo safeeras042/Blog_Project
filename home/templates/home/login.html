@@ -1,0 +1,46 @@
+{% extends 'home/index.html' %}
+
+{% block content %}
+
+<br><br>
+<!-- <form method="post" class="register-form">
+    {% csrf_token %}
+    <h2>Login</h2>
+    <div class="form-group">
+      <label for="{{ form.username.id_for_label }}" class="form-label">Username</label>
+      <input type="text" name="username" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="{{ form.password1.id_for_label }}" class="form-label">Password</label>
+      <input type="password" name="password" class="form-control" >
+    </div>
+    <button type="submit" class="custom-button">Register</button>
+  </form> -->
+
+  <form method="post" class="register-form mt-5">
+    {% csrf_token %}
+    <h2>Login</h2>
+    {% if messages %}
+      {% for message in messages %}
+        <p class="error-message alert alert-danger text-center mt-5">{{ message }}</p>
+      {% endfor %}
+    {% endif %}
+    <div class="form-group">
+      <label for="{{ form.username.id_for_label }}" class="form-label">Username</label>
+      <input type="text" name="username" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="{{ form.password1.id_for_label }}" class="form-label">Password</label>
+      <input type="password" name="password" class="form-control">
+    </div>
+    <button type="submit" class="custom-button">Login</button>
+    <hr>
+    <center>
+      <p>Don't have an account?</p>
+      <a href="{% url 'home:register' %}" class="btn btn-warning link-offset-2 link-underline link-underline-opacity-0">Create an Account</a>
+  </center>
+  </form>
+  
+
+  
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'home/index.html' %}
+
+{% block content %}
+<div class="mx-auto bg-warning text-white p-3 my-3 rounded-lg rounded-3 rounded-1 border border-dark w-50">
+    <h1 class="text-center display-5">All Blogs</h1>
+</div>
+
+{% for blog in blogs %}
+<div class="mx-auto w-50 bg-light text-dark p-3 my-3 rounded-lg border border-primary rounded-3">
+    <a href="{% url 'home:content' blog.id %}" class="link-offset-2 link-underline link-underline-opacity-0">
+        <h1 class="text-dark">{{ blog.title }}</h1>
+    </a>
+    <p>
+        {% if blog.content|wordcount > 50 %}
+            {{ blog.content|truncatewords:50 }}
+            <a href="{% url 'home:content' blog.id %}" class="read-more-link link-warning">Read More</a>
+        {% else %}
+            {{ blog.content }}
+        {% endif %}
+    </p>
+    <div class="row">
+        <div class="col-6">{{ blog.author }}</div>
+        <div class="col-6 text-end">{{ blog.date }}</div>
+    </div>
+</div>
+{% endfor %}
+
+
+{% endblock %}

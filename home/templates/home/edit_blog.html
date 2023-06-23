@@ -1,0 +1,24 @@
+{% extends 'home/index.html' %}
+
+{% block content %}
+
+
+
+
+<div class="custom-blog-container bg-light">
+    <h1 class="title">Edit Blog</h1>
+    <form method="POST" action="{% url 'home:edit_blog' blog.id %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title" class="label">Title:</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ blog.title }}">
+        </div>
+        <div class="form-group">
+            <label for="content" class="label">Content:</label>
+            <textarea class="form-control custom-textarea " id="content" name="content" rows="5">{{ blog.content }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary custom-button">Submit</button>
+    </form>
+</div>
+
+{% endblock %}
