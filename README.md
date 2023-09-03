@@ -8,8 +8,6 @@
 - [Features](#features)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
-- [test](#test)
-
 
 
 
@@ -75,4 +73,4 @@ python manage.py runserver
 * Authors can create new blog posts, edit their existing posts, and delete posts if needed.
 * Readers can browse through blogs, read and comment on them.
 
-## test
+
